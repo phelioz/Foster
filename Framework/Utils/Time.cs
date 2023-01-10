@@ -130,4 +130,26 @@ public static class Time
         float range = (to - from) * 0.5f;
         return from + range + MathF.Sin(((total + duration * offsetPercent) / duration) * MathF.Tau) * range;
     }
+
+    /// <summary>
+    /// Returns true when the given timestamp is passed.
+    /// </summary>
+    public static bool OnTime(double time, double timestamp)
+    {
+        return time >= timestamp && time - Time.Delta < timestamp;
+    }
+
+    /// <summary>
+    /// Time the application should pause for.
+    /// </summary>
+    public static float PauseTimer { get; internal set; }
+
+    /// <summary>
+    /// Pauses the entire application for the given time.
+    /// </summary>
+    public static void PauseFor(float time)
+    {
+        if (time >= PauseTimer)
+            PauseTimer = time;
+    }
 }

@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7717
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWindow", "Samples\HelloWindow\HelloWindow.csproj", "{2F19A429-3652-468F-86FD-D62D92E79541}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foster.OpenAL", "Platforms\OpenAL\Foster.OpenAL.csproj", "{6CD070F9-BB79-438F-A942-620D17605791}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{2F19A429-3652-468F-86FD-D62D92E79541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F19A429-3652-468F-86FD-D62D92E79541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F19A429-3652-468F-86FD-D62D92E79541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD070F9-BB79-438F-A942-620D17605791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD070F9-BB79-438F-A942-620D17605791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD070F9-BB79-438F-A942-620D17605791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD070F9-BB79-438F-A942-620D17605791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{2370C391-8D36-4C28-B5EE-D78849ED51D5} = {1AB8A816-9239-482A-B75A-A4F0F97E5BE5}
 		{11F6736E-900C-4064-B020-F875EB266FBD} = {1AB8A816-9239-482A-B75A-A4F0F97E5BE5}
 		{2F19A429-3652-468F-86FD-D62D92E79541} = {77172B0A-BF0F-4622-8824-E7FF073B38BB}
+		{6CD070F9-BB79-438F-A942-620D17605791} = {1AB8A816-9239-482A-B75A-A4F0F97E5BE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2132D11-8387-4F4A-84E2-C38A54F1D04E}

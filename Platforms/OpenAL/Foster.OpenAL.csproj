@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="AL_Backup.cs" />
+        <Compile Remove="AL_Bindings.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Framework\Foster.Framework.csproj" />
+    </ItemGroup>
+
+    <!-- Determine OS Platform -->
+    <PropertyGroup
+        Condition="($([MSBuild]::IsOsPlatform(Windows)) and '$(RuntimeIdentifier)'=='') or '$(RuntimeIdentifier)'=='win-x64'">
+        <TargetOS>win</TargetOS>
+    </PropertyGroup>
+
+    <PropertyGroup
+        Condition="($([MSBuild]::IsOsPlatform(OSX)) and '$(RuntimeIdentifier)'=='') or '$(RuntimeIdentifier)'=='osx-x64'">
+        <TargetOS>osx</TargetOS>
+    </PropertyGroup>
+
+    <!-- Copy OpenAL for Windows -->
+    <ItemGroup Condition="'$(TargetOS)'=='win'">
+        <None Update="OpenAL32.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+</Project>
