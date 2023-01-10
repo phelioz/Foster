@@ -7,13 +7,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<RepositoryUrl>https://github.com/NoelFB/Foster</RepositoryUrl>
+		<RepositoryUrl>https://github.com/phelioz/Foster</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 
-		<ProjectUrl>https://github.com/NoelFB/Foster</ProjectUrl>
-		<Authors>Noel Berry</Authors>
-		<Owners>Noel Berry</Owners>
-		<Company>Noel Berry</Company>
+		<ProjectUrl>https://github.com/phelioz/Foster</ProjectUrl>
+		<Authors>Gustav Beije</Authors>
+		<Owners>Gustav Beije</Owners>
+		<Company>Gustav Beije</Company>
 		<Copyright>Copyright © Noel Berry and Contributors</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -26,7 +26,8 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>
+			$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 	</PropertyGroup>
 
 	<ItemGroup>
