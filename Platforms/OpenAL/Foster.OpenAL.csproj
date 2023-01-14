@@ -30,7 +30,7 @@
 
     <!-- Copy OpenAL for Windows -->
     <ItemGroup Condition="'$(TargetOS)'=='win'">
-        <None Update="OpenAL32.dll">
+        <None Update="soft_oal.dll">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

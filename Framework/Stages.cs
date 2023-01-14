@@ -1,23 +1,20 @@
-﻿using System.Collections.Generic;
-using Foster.Framework;
-
-namespace Foster
+﻿namespace Foster
 {
-    public class Stages : Module
+    public class Stages
     {
-        /// <summary>
-        /// Reference to the stages
-        /// </summary>
-        public Stack<Stage> stages = new();
         /// <summary>
         /// Reference to the active stage
         /// </summary>
         public Stage? activeStage;
+        /// <summary>
+        /// Reference to the next stage
+        /// </summary>
+        public Stage? nextStage;
 
         /// <summary>
         /// Called every fixed step
         /// </summary>
-        protected internal override void FixedUpdate()
+        public void FixedUpdate()
         {
             UpdateActiveStage();
             activeStage?.FixedUpdate();
@@ -26,7 +23,7 @@ namespace Foster
         /// <summary>
         /// Called every variable step
         /// </summary>
-        protected internal override void Update()
+        public void Update()
         {
             UpdateActiveStage();
             activeStage?.Update();
@@ -34,38 +31,24 @@ namespace Foster
 
         private void UpdateActiveStage()
         {
-            Stage? nextStage = null;
-            if (stages.Count != 0)
+            if (activeStage == nextStage) return;
+
+            if (activeStage is not null)
             {
-                nextStage = stages.Peek();
-                if (activeStage != nextStage)
-                {
-                    if (activeStage != null)
-                    {
-                        activeStage.End();
-                    }
-                    if (nextStage != null)
-                    {
-                        nextStage.Start();
-                    }
-                }
+                activeStage.End();
             }
+
             activeStage = nextStage;
+            if (activeStage is not null)
+            {
+                activeStage.stages = this;
+                activeStage.Start();
+            }
         }
 
-        public void PushStage(Stage stage)
+        public void SetNextStage(Stage stage)
         {
-            stages.Push(stage);
-        }
-
-        public void PopStage()
-        {
-            stages.Pop();
-        }
-
-        public Stage? GetActiveStage()
-        {
-            return activeStage;
+            nextStage = stage;
         }
     }
 }

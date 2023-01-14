@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Foster.Framework;
 
 namespace Foster.OpenAL
 {
     internal static class AL
     {
-        private const string DLL = "openal32.dll";
+        private const string DLL = "soft_oal.dll";
         internal const CallingConvention ALCallingConvention = CallingConvention.Cdecl;
 
         [DllImport(DLL, EntryPoint = "alEnable", ExactSpelling = true, CallingConvention = ALCallingConvention)]
@@ -34,39 +29,39 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGetFloat", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern float Get(ALGetFloat param);
-       
+
         [DllImport(DLL, EntryPoint = "alGetError", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern ALError GetError();
-       
+
         [DllImport(DLL, EntryPoint = "alIsExtensionPresent", ExactSpelling = true, CallingConvention = ALCallingConvention, CharSet = CharSet.Ansi)]
         public static extern bool IsExtensionPresent([In] string extname);
-        
+
         [DllImport(DLL, EntryPoint = "alGetProcAddress", ExactSpelling = true, CallingConvention = ALCallingConvention, CharSet = CharSet.Ansi)]
         public static extern IntPtr GetProcAddress([In] string fname);
-        
+
         [DllImport(DLL, EntryPoint = "alGetEnumValue", ExactSpelling = true, CallingConvention = ALCallingConvention, CharSet = CharSet.Ansi)]
         public static extern int GetEnumValue([In] string ename);
-      
+
         [DllImport(DLL, EntryPoint = "alListenerf", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Listener(ALListenerf param, float value);
-     
+
         [DllImport(DLL, EntryPoint = "alListener3f", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Listener(ALListener3f param, float value1, float value2, float value3);
-    
+
         public static void Listener(ALListener3f param, ref Vector3 values)
         {
             Listener(param, values.X, values.Y, values.Z);
         }
-    
+
         [DllImport(DLL, EntryPoint = "alListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void Listener(ALListenerfv param, float* values);
-        
+
         [DllImport(DLL, EntryPoint = "alListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Listener(ALListenerfv param, ref float values);
-        
+
         [DllImport(DLL, EntryPoint = "alListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Listener(ALListenerfv param, float[] values);
-       
+
         public static void Listener(ALListenerfv param, ref Vector3 at, ref Vector3 up)
         {
             Span<float> data = stackalloc float[6];
@@ -84,10 +79,10 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGetListenerf", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetListener(ALListenerf param, [Out] out float value);
-        
+
         [DllImport(DLL, EntryPoint = "alGetListener3f", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetListener(ALListener3f param, [Out] out float value1, [Out] out float value2, [Out] out float value3);
-        
+
         public static void GetListener(ALListener3f param, out Vector3 values)
         {
             GetListener(param, out values.X, out values.Y, out values.Z);
@@ -95,13 +90,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGetListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void GetListener(ALListenerfv param, float* values);
-        
+
         [DllImport(DLL, EntryPoint = "alGetListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void GetListener(ALListenerfv param, ref float values);
-        
+
         [DllImport(DLL, EntryPoint = "alGetListenerfv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetListener(ALListenerfv param, [In] float[] values);
-        
+
         public static void GetListener(ALListenerfv param, out Vector3 at, out Vector3 up)
         {
             Span<float> values = stackalloc float[6];
@@ -156,13 +151,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void GenSources(int n, [In] int* sources);
-       
+
         [DllImport(DLL, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GenSources(int n, ref int sources);
-        
+
         [DllImport(DLL, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GenSources(int n, int[] sources);
-        
+
         public static void GenSources(int[] sources)
         {
             if (sources == null)
@@ -200,7 +195,7 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alDeleteSources", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void DeleteSources(int n, [In] int* sources);
-        
+
         [DllImport(DLL, EntryPoint = "alDeleteSources", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void DeleteSources(int n, ref int sources);
 
@@ -225,13 +220,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alIsSource", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern bool IsSource(int sid);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcef", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Source(int sid, ALSourcef param, float value);
-        
+
         [DllImport(DLL, EntryPoint = "alSource3f", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Source(int sid, ALSource3f param, float value1, float value2, float value3);
-        
+
         public static void Source(int sid, ALSource3f param, ref Vector3 values)
         {
             Source(sid, param, values.X, values.Y, values.Z);
@@ -239,10 +234,10 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSourcei", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Source(int sid, ALSourcei param, int value);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcei", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Source(int sid, ALSourceb param, bool value);
-        
+
         public static void BindBufferToSource(int source, int buffer)
         {
             Source(source, ALSourcei.Buffer, buffer);
@@ -250,13 +245,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSource3i", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void Source(int sid, ALSource3i param, int value1, int value2, int value3);
-        
+
         [DllImport(DLL, EntryPoint = "alGetSourcef", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetSource(int sid, ALSourcef param, out float value);
 
         [DllImport(DLL, EntryPoint = "alGetSource3f", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetSource(int sid, ALSource3f param, out float value1, out float value2, out float value3);
-        
+
         public static void GetSource(int sid, ALSource3f param, out Vector3 values)
         {
             GetSource(sid, param, out values.X, out values.Y, out values.Z);
@@ -264,7 +259,7 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGetSource3i", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetSource(int sid, ALSource3i param, out int value1, out int value2, out int value3);
-        
+
         public static void GetSource(int sid, ALSource3i param, out Vector3 values)
         {
             int x = 0;
@@ -277,25 +272,25 @@ namespace Foster.OpenAL
             values.Y = y;
             values.Z = z;
         }
-        
+
         [DllImport(DLL, EntryPoint = "alGetSourcei", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetSource(int sid, ALGetSourcei param, [Out] out int value);
-        
+
         public static void GetSource(int sid, ALSourceb param, out bool value)
         {
             GetSource(sid, (ALGetSourcei)param, out int result);
             value = result != 0;
         }
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePlayv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourcePlay(int ns, [In] int* sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePlayv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePlay(int ns, [In] ref int sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePlayv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePlay(int ns, [In] int[] sids);
-        
+
         public static void SourcePlay(Span<int> sources)
         {
             SourcePlay(sources.Length, ref sources[0]);
@@ -303,13 +298,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSourceStopv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourceStop(int ns, [In] int* sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceStopv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceStop(int ns, ref int sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceStopv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceStop(int ns, int[] sids);
-        
+
         public static void SourceStop(Span<int> sources)
         {
             SourceStop(sources.Length, ref sources[0]);
@@ -317,13 +312,13 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSourceRewindv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourceRewind(int ns, [In] int* sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceRewindv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceRewind(int ns, ref int sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceRewindv", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceRewind(int ns, int[] sids);
-        
+
         public static void SourceRewind(Span<int> sources)
         {
             SourceRewind(sources.Length, ref sources[0]);
@@ -331,31 +326,31 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSourcePausev", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourcePause(int ns, [In] int* sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePausev", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePause(int ns, ref int sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePausev", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePause(int ns, int[] sids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePlay", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePlay(int sid);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceStop", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceStop(int sid);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceRewind", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceRewind(int sid);
-        
+
         [DllImport(DLL, EntryPoint = "alSourcePause", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourcePause(int sid);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceQueueBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourceQueueBuffers(int sid, int numEntries, [In] int* bids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceQueueBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceQueueBuffers(int sid, int numEntries, int[] bids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceQueueBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceQueueBuffers(int sid, int numEntries, ref int bids);
         public static void SourceQueueBuffers(int sid, Span<int> buffers)
@@ -370,7 +365,7 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alSourceUnqueueBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static unsafe extern void SourceUnqueueBuffers(int sid, int numEntries, int* bids);
-        
+
         [DllImport(DLL, EntryPoint = "alSourceUnqueueBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SourceUnqueueBuffers(int sid, int numEntries, int[] bids);
 
@@ -462,7 +457,7 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alDeleteBuffers", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void DeleteBuffers(int n, [In] int[] buffers);
- 
+
         public static void DeleteBuffers(int[] buffers)
         {
             if (buffers == null)
@@ -518,19 +513,19 @@ namespace Foster.OpenAL
 
         [DllImport(DLL, EntryPoint = "alGetBufferi", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void GetBuffer(int bid, ALGetBufferi param, [Out] out int value);
-        
+
         [DllImport(DLL, EntryPoint = "alDopplerFactor", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void DopplerFactor(float value);
 
         [DllImport(DLL, EntryPoint = "alDopplerVelocity", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void DopplerVelocity(float value);
-        
+
         [DllImport(DLL, EntryPoint = "alSpeedOfSound", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void SpeedOfSound(float value);
-      
+
         [DllImport(DLL, EntryPoint = "alDistanceModel", ExactSpelling = true, CallingConvention = ALCallingConvention)]
         public static extern void DistanceModel(ALDistanceModel distancemodel);
-        
+
         public static ALDistanceModel GetDistanceModel()
         {
             return (ALDistanceModel)Get(ALGetInteger.DistanceModel);
@@ -549,5 +544,5 @@ namespace Foster.OpenAL
         }
     }
 
-   
+
 }

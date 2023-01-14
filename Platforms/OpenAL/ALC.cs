@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Foster.Framework;
 
 namespace Foster.OpenAL
@@ -22,7 +19,7 @@ namespace Foster.OpenAL
             public static int EfxMaxAuxiliarySends = 0;
         }
 
-        private const string DLL = "openal32.dll";
+        private const string DLL = "soft_oal.dll";
         internal const CallingConvention AlcCallingConv = CallingConvention.Cdecl;
 
         public static void Init(AL_Audio audio, ISystemOpenAL system)
